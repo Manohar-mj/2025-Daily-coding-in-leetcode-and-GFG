@@ -1,0 +1,15 @@
+
+
+class Solution:
+    def countPairs (self, arr, target) : 
+        #Complete the function
+        import bisect
+        lth=len(arr)
+        ret=0
+        for ix,ve in enumerate(arr):
+            left=bisect.bisect_left(arr,target-ve,ix+1)
+            if left<lth and arr[left]==target-ve:
+                right=bisect.bisect_right(arr,target-ve,left+1)-1
+                if right<lth and arr[right]==target-ve:
+                    ret+=right-left+1
+        return ret
